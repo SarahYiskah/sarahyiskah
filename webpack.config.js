@@ -18,7 +18,7 @@ module.exports = {
     ],
     resolve: {
         modules: [path.resolve(__dirname, 'src'), 'node_modules'],
-        extensions: ['*', '.js', '.jsx', '.tsx', '.ts'],
+        extensions: ['*', '.js', '.jsx', '.tsx', '.ts', '.css'],
     },
     devServer: {
         contentBase: path.resolve(__dirname, './dist'),

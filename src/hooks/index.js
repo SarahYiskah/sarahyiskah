@@ -1,2 +1,2 @@
-export { useActiveRoute } from './useActiveRoute';
-export { useCommonClasses } from './useCommonClasses';
+export { default as useActiveRoute } from './useActiveRoute';
+export { default as useCommonClasses } from './useCommonClasses';
