@@ -17,7 +17,7 @@ module.exports = {
         })
     ],
     resolve: {
-        modules: [__dirname, 'src', 'node_modules'],
+        modules: [path.resolve(__dirname, 'src'), 'node_modules'],
         extensions: ['*', '.js', '.jsx', '.tsx', '.ts'],
     },
     devServer: {
