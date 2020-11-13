@@ -10,7 +10,11 @@ const useCommonClasses = createUseStyles(theme => ({
         letterSpacing: '0px',
         textAlign: 'left',
         color: theme.palette.text.primary,
-        textTrasform: 'uppercase'
+        textTrasform: 'uppercase',
+        maxWidth: '556px',
+        [theme.breakpoints.down.md]: {
+            maxWidth: '400px'
+        }
     },
     sectionSubheader: {
         color: theme.palette.text.secondary,
@@ -22,6 +26,10 @@ const useCommonClasses = createUseStyles(theme => ({
         lineHeight: '52px',
         letterSpacing: '0px',
         textAlign: 'left',
+        maxWidth: '556px',
+        [theme.breakpoints.down.md]: {
+            maxWidth: '400px'
+        }
     },
     sectionDescription: {
         color: theme.palette.text.primary,
@@ -32,6 +40,10 @@ const useCommonClasses = createUseStyles(theme => ({
         lineHeight: '78px',
         letterSpacing: '0px',
         textAlign: 'left',
+        maxWidth: '556px',
+        [theme.breakpoints.down.md]: {
+            maxWidth: '400px'
+        }
     },
     sectionDetails: {
         color: theme.palette.text.primary,
@@ -42,18 +54,27 @@ const useCommonClasses = createUseStyles(theme => ({
         lineHeight: '52px',
         letterSpacing: '0px',
         textAlign: 'left',
+        margin: 0,
+        maxWidth: '556px',
+        [theme.breakpoints.down.md]: {
+            maxWidth: '400px'
+        }
     },
-    sectionImage: props => ({
+    sectionImage: {
         width: '485px',
         height: '530px',
-        // left: '955px',
-        // top: '195px',
-        background: props.background,
+        position: 'sticky',
+        top: '196px',
+        paddingBottom: '140px',
+        [theme.breakpoints.down.md]: {
+            width: '385px',
+            height: '420.7px'
+        },
         [theme.breakpoints.up.lg]: {
             width: '867.81px',
             height: '530px'
         }
-    })
+    }
 }));
 
 export default useCommonClasses;

@@ -9,9 +9,10 @@ const useStyles = createUseStyles(theme => ({
     routes: {
         display: 'flex',
         flexDirection: 'column',
-        position: 'absolute',
-        right: '30px',
-        transition: 'top 0.5s'
+        position: 'sticky',
+        paddingRight: '50px',
+        transition: 'top 0.5s',
+        paddingBottom: '113px'
     },
     navLink: {
         fontFamily: 'PT Sans Caption',
@@ -56,29 +57,27 @@ const Navbar = () => {
         <div className={classes.container}>
             <div
                 className={classes.routes}
-                style={{
-                    top: [top]
-                }}
+                style={{ top: [top] }}
             >
                 <a
                     href="#about"
-                    className={activeRoute === "about" ? classes.navLinkActive : classes.navLink}
                     onClick={handleAboutClick}
+                    className={activeRoute === "about" ? classes.navLinkActive : classes.navLink}
                 >
                     About
                 </a>
                 <a
                     href="#projects"
-                    className={activeRoute === "projects" ? classes.navLinkActive : classes.navLink}
                     onClick={handleProjectsClick}
+                    className={activeRoute === "projects" ? classes.navLinkActive : classes.navLink}
                 >
                     Projects
                 </a>
 
                 <a
                     href="#blog"
-                    className={activeRoute === "blog" ? classes.navLinkActive : classes.navLink}
                     onClick={handleBlogClick}
+                    className={activeRoute === "blog" ? classes.navLinkActive : classes.navLink}
                 >
                     Blog
                 </a>

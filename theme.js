@@ -29,7 +29,9 @@ export default {
             lg: '@media screen and (min-width: 1800px)'
         },
         down: {
-            sm: '@media screen and (max-width: 600px)'
+            xs: '@media screen and (max-width: 600px)',
+            sm: '@media screen and (max-width: 850px)',
+            md: '@media screen and (max-width: 1100px)'
         }
     }
 };
