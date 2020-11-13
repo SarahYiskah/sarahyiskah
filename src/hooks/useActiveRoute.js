@@ -1,10 +1,8 @@
-import { useState } from 'react';
-import { ROUTES } from 'utility';
-
+import { useContext } from 'react';
+import { ActiveRouteContext } from 'providers';
 
 function useActiveRoute() {
-    const [activeRoute, setActiveRoute] = useState(ROUTES.ABOUT);
-    return [activeRoute, setActiveRoute];
+    return useContext(ActiveRouteContext);
 }
 
 export default useActiveRoute;

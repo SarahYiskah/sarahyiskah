@@ -12,6 +12,7 @@ const useCommonClasses = createUseStyles(theme => ({
         color: theme.palette.text.primary,
         textTrasform: 'uppercase',
         maxWidth: '556px',
+        margin: '0',
         [theme.breakpoints.down.md]: {
             maxWidth: '400px'
         }
@@ -27,6 +28,7 @@ const useCommonClasses = createUseStyles(theme => ({
         letterSpacing: '0px',
         textAlign: 'left',
         maxWidth: '556px',
+        margin: '0',
         [theme.breakpoints.down.md]: {
             maxWidth: '400px'
         }
@@ -41,6 +43,7 @@ const useCommonClasses = createUseStyles(theme => ({
         letterSpacing: '0px',
         textAlign: 'left',
         maxWidth: '556px',
+        margin: '0',
         [theme.breakpoints.down.md]: {
             maxWidth: '400px'
         }
@@ -56,8 +59,12 @@ const useCommonClasses = createUseStyles(theme => ({
         textAlign: 'left',
         margin: 0,
         maxWidth: '556px',
+        margin: '0',
         [theme.breakpoints.down.md]: {
             maxWidth: '400px'
+        },
+        '& > p:last-child': {
+            marginBottom: 0
         }
     },
     sectionImage: {
@@ -65,7 +72,6 @@ const useCommonClasses = createUseStyles(theme => ({
         height: '530px',
         position: 'sticky',
         top: '196px',
-        paddingBottom: '140px',
         [theme.breakpoints.down.md]: {
             width: '385px',
             height: '420.7px'

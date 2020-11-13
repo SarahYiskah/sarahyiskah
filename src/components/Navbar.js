@@ -40,7 +40,7 @@ const useStyles = createUseStyles(theme => ({
 
 const Navbar = () => {
     const classes = useStyles();
-    const [activeRoute, setActiveRoute] = useActiveRoute();
+    const { activeRoute, setActiveRoute } = useActiveRoute();
     const [top, setTop] = useState('142px');
 
     const handleAboutClick = () => setActiveRoute('about');

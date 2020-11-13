@@ -1,6 +1,6 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
-import { useCommonClasses } from 'hooks'
+import { useCommonClasses, useActiveRoute } from 'hooks'
 import clsx from 'clsx';
 
 const useStyles = createUseStyles(theme => ({
@@ -18,10 +18,13 @@ const useStyles = createUseStyles(theme => ({
 const About = () => {
     const classes = useStyles();
     const commonClasses = useCommonClasses();
+    const { setActiveRoute } = useActiveRoute();
+
+    const handleAboutMouseOver = () => setActiveRoute('about');
 
     return (
-        <div id="about" className={classes.container}>
-            <p className={clsx(commonClasses.sectionDetails, classes.details)}>
+        <div id="about" className={classes.container} onMouseOver={handleAboutMouseOver}>
+            <p className={clsx(commonClasses.sectionDescription, classes.details)}>
                 Hey there!
                 <br />
                 <br />

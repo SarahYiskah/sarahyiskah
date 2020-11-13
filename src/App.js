@@ -1,6 +1,8 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
-import { Footer, Navbar, About } from 'components';
+import { Footer, Navbar, About, Projects } from 'components';
+import { ActiveRouteProvider } from 'providers';
+
 
 const useStyles = createUseStyles(theme => ({
     text: {
@@ -20,13 +22,18 @@ const App = () => {
     const classes = useStyles();
 
     return (
-        <div className={classes.container}>
-            <div className={classes.body}>
-                <Navbar />
-                <About />
+        <ActiveRouteProvider>
+            <div className={classes.container}>
+                <div className={classes.body}>
+                    <Navbar />
+                    <div>
+                        <About />
+                        <Projects />
+                    </div>
+                </div>
+                <Footer />
             </div>
-            <Footer />
-        </div>
+        </ActiveRouteProvider>
     );
 };
 
