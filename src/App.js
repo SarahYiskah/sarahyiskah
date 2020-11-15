@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
-import { Footer, Navbar, About, Projects } from 'components';
 import { ActiveRouteProvider } from 'providers';
-import { getImageHeightAndTop } from 'utility'
+import { getImageHeightAndTop, isBotttomOfScreen } from 'utility'
+import { Footer, Navbar, About, Projects, Blog } from 'components';
 
 
 const useStyles = createUseStyles(theme => ({
@@ -24,13 +24,23 @@ const App = () => {
 
     const handleScroll = () => {
         const scrollSections = Array.from(document.getElementsByClassName('scrollSection'));
-        scrollSections.forEach(section => {
-            const sectionId = section.id;
-            const imageDimensions = getImageHeightAndTop(section);
-            const imageToUpdate = document.getElementById(sectionId + 'Img');
-            imageToUpdate.style.height = imageDimensions.height;
-            imageToUpdate.style.top = imageDimensions.location;
-        });
+        const blog = document.getElementById('blog');
+        if (isBotttomOfScreen(blog)) {
+            scrollSections.forEach(section => {
+                const sectionId = section.id;
+                const imageToUpdate = document.getElementById(sectionId + 'Img');
+                imageToUpdate.style.position = 'sticky';
+            });
+        } else {
+            scrollSections.forEach(section => {
+                const sectionId = section.id;
+                const imageDimensions = getImageHeightAndTop(section);
+                const imageToUpdate = document.getElementById(sectionId + 'Img');
+                imageToUpdate.style.position = 'fixed';
+                imageToUpdate.style.height = imageDimensions.height;
+                imageToUpdate.style.top = imageDimensions.location;
+            });
+        }
     };
 
     useEffect(() => {
@@ -48,6 +58,7 @@ const App = () => {
                     <div>
                         <About />
                         <Projects />
+                        <Blog />
                     </div>
                 </div>
                 <Footer />

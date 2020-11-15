@@ -6,3 +6,10 @@ export function getImageHeightAndTop(elm) {
     const location = `${(140 + (imageHeight - height))}px`;
     return { height: `${height}px`, location };
 };
+
+export function isBotttomOfScreen(elm) {
+    const bottom = elm.getBoundingClientRect().bottom;
+    //TODO - Get all image heights.
+    const imageHeight = 420.7;
+    return bottom < (imageHeight + 300);
+}

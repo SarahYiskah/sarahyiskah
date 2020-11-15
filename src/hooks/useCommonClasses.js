@@ -21,7 +21,7 @@ const useCommonClasses = createUseStyles(theme => ({
         color: theme.palette.text.secondary,
         fontFamily: 'PT Sans Caption',
         fontSize: '32px',
-        textTrasform: 'uppercase',
+        textTransform: 'uppercase',
         fontStyle: 'normal',
         fontWeight: '400',
         lineHeight: '52px',
@@ -73,6 +73,8 @@ const useCommonClasses = createUseStyles(theme => ({
         position: 'fixed',
         right: '0',
         top: '140px',
+        objectFit: 'cover',
+        marginLeft: 'auto',
         [theme.breakpoints.down.md]: {
             width: '385px',
             height: '420.7px'
