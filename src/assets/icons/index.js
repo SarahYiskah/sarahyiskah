@@ -8,3 +8,6 @@ export { default as Play } from './Play';
 export { default as PlayBox } from './PlayBox';
 export { default as RightArrow } from './RightArrow';
 export { default as Star } from './Star';
+export { default as Linkedin } from './Linkedin';
+export { default as Medium } from './Medium';
+export { default as Github } from './Github';

@@ -6,9 +6,6 @@ import { Footer, Navbar, About, Projects, Blog } from 'components';
 
 
 const useStyles = createUseStyles(theme => ({
-    text: {
-        color: theme.palette.primary.main
-    },
     body: {
         marginBottom: '690px',
         background: theme.palette.background.primary,
