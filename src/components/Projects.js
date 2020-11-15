@@ -28,7 +28,8 @@ const projects = [
             'Hosted on Firebase'
         ],
         background: '#D0D1D8',
-        videoURL: ''
+        videoURL: '',
+        imageURL: require('../assets/images/musico.png')
     }, {
         title: 'GAME NIGHT',
         subheader: 'HTML  |  CSS  |  Javascript',
@@ -40,7 +41,8 @@ const projects = [
             'Hosted on Heroku',
         ],
         background: '#CDD4CB',
-        videoURL: ''
+        videoURL: '',
+        imageURL: require('../assets/images/game-night.png')
     }, {
         title: 'TRIPPY',
         subheader: 'HTML  |  CSS  |  Ruby  |  Javascript',
@@ -52,7 +54,8 @@ const projects = [
             'Hosted on Heroku'
         ],
         background: '#EDE6CF',
-        videoURL: ''
+        videoURL: '',
+        imageURL: require('../assets/images/trippy.png')
     }
 ];
 
@@ -85,10 +88,11 @@ const Projects = () => {
                             ))}
                         </div>
                     </div>
-                    <div
+                    <img
                         className={commonClasses.sectionImage}
                         id={project.title.toLowerCase() + 'Img'}
                         style={{ background: project.background }}
+                        src={project.imageURL}
                     />
                 </div>
             ))}
