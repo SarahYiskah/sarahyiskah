@@ -3,7 +3,7 @@ import { createUseStyles } from 'react-jss';
 const useCommonClasses = createUseStyles(theme => ({
     sectionTitle: {
         fontFamily: 'PT Sans Caption',
-        fontSize: '60px',
+        fontSize: '50px',
         fontStyle: 'normal',
         fontWeight: '400',
         lineHeight: '78px',
@@ -20,7 +20,7 @@ const useCommonClasses = createUseStyles(theme => ({
     sectionSubheader: {
         color: theme.palette.text.secondary,
         fontFamily: 'PT Sans Caption',
-        fontSize: '40px',
+        fontSize: '32px',
         textTrasform: 'uppercase',
         fontStyle: 'normal',
         fontWeight: '400',
@@ -36,7 +36,7 @@ const useCommonClasses = createUseStyles(theme => ({
     sectionDescription: {
         color: theme.palette.text.primary,
         fontFamily: 'PT Sans Caption',
-        fontSize: '60px',
+        fontSize: '50px',
         fontStyle: 'normal',
         fontWeight: '400',
         lineHeight: '78px',
@@ -51,7 +51,7 @@ const useCommonClasses = createUseStyles(theme => ({
     sectionDetails: {
         color: theme.palette.text.primary,
         fontFamily: 'PT Sans Caption',
-        fontSize: '40px',
+        fontSize: '32px',
         fontStyle: 'normal',
         fontWeight: '400',
         lineHeight: '52px',
@@ -70,8 +70,9 @@ const useCommonClasses = createUseStyles(theme => ({
     sectionImage: {
         width: '485px',
         height: '530px',
-        position: 'sticky',
-        top: '196px',
+        position: 'fixed',
+        right: '0',
+        top: '140px',
         [theme.breakpoints.down.md]: {
             width: '385px',
             height: '420.7px'

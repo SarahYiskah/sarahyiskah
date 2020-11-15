@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useCommonClasses, useActiveRoute } from 'hooks'
+import clsx from 'clsx';
 
 const useStyles = createUseStyles(theme => ({
     container: {
@@ -68,7 +69,7 @@ const Projects = () => {
                 <div
                     id={project.title.toLowerCase()}
                     key={project.title.toLowerCase()}
-                    className={classes.container}
+                    className={clsx(classes.container, 'scrollSection')}
                 >
                     <div className={classes.details}>
                         <p className={commonClasses.sectionTitle}>{project.title}</p>
@@ -85,13 +86,10 @@ const Projects = () => {
                         </div>
                     </div>
                     <div
-                        style={{ paddingBottom: index === projects.length - 1 ? '140px' : 0 }}
-                    >
-                        <div
-                            className={commonClasses.sectionImage}
-                            style={{ background: project.background }}
-                        />
-                    </div>
+                        className={commonClasses.sectionImage}
+                        id={project.title.toLowerCase() + 'Img'}
+                        style={{ background: project.background }}
+                    />
                 </div>
             ))}
         </div>

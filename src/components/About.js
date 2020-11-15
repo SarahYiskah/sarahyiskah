@@ -23,7 +23,11 @@ const About = () => {
     const handleAboutMouseOver = () => setActiveRoute('about');
 
     return (
-        <div id="about" className={classes.container} onMouseOver={handleAboutMouseOver}>
+        <div
+            id="about"
+            className={clsx(classes.container, 'scrollSection')}
+            onMouseOver={handleAboutMouseOver}
+        >
             <p className={clsx(commonClasses.sectionDescription, classes.details)}>
                 Hey there!
                 <br />
@@ -35,7 +39,7 @@ const About = () => {
                 <br />
                 Sarah Yiskah Eichenstein
             </p>
-            <img className={commonClasses.sectionImage} src={require('../assets/images/profile.png')} />
+            <img id="aboutImg" className={commonClasses.sectionImage} src={require('../assets/images/profile.png')} />
         </div>
     );
 };
