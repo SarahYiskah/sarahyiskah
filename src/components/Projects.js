@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useCommonClasses, useActiveRoute } from 'hooks'
 import clsx from 'clsx';
@@ -12,6 +12,20 @@ const useStyles = createUseStyles(theme => ({
     details: {
         paddingTop: '130px',
         paddingBottom: '127px'
+    },
+    unactive: {
+        '& > p': {
+            color: theme.palette.text.tertiary,
+            transition: 'color 0.3s',
+        },
+        '& > div > p': {
+            color: theme.palette.text.tertiary,
+            transition: 'color 0.3s',
+        }
+    },
+    unactiveSubheader: {
+        color: theme.palette.text.secondary + '33',
+        transition: 'color 0.3s',
     }
 }));
 
@@ -62,40 +76,51 @@ const projects = [
 const Projects = () => {
     const classes = useStyles();
     const commonClasses = useCommonClasses();
-    const { setActiveRoute } = useActiveRoute();
 
-    const handleProjectsMouseOver = () => setActiveRoute('projects');
+    const { activeRoute } = useActiveRoute();
+    const [activeProject, setActiveProject] = useState('');
+
+    useEffect(() => {
+        const project = activeRoute.split('.')[1] || '';
+        setActiveProject(project);
+    }, [activeRoute]);
+
 
     return (
-        <div id="projects" onMouseOver={handleProjectsMouseOver}>
-            {projects.map((project, index) => (
-                <div
-                    id={project.title.toLowerCase()}
-                    key={project.title.toLowerCase()}
-                    className={clsx(classes.container, 'scrollSection')}
-                >
-                    <div className={classes.details}>
-                        <p className={commonClasses.sectionTitle}>{project.title}</p>
-                        <p className={commonClasses.sectionSubheader}>{project.subheader}</p>
-                        <br /><br />
-                        <p className={commonClasses.sectionDescription}>{project.description}</p>
-                        <br /><br />
-                        <div className={commonClasses.sectionDetails}>
-                            {project.details.map((details, index) => (
-                                <p key={'details' + index}>
-                                    * {details}
-                                </p>
-                            ))}
+        <div id="projects">
+            {projects.map((project, index) => {
+                const projectId = project.title.toLowerCase().replace(/ /g, "_");
+                return (
+                    <div
+                        id={projectId}
+                        key={projectId}
+                        className={clsx(classes.container, 'scrollSection')}
+                    >
+                        <div className={clsx(classes.details, activeProject !== projectId ? classes.unactive : '')}>
+                            <p className={commonClasses.sectionTitle}>{project.title}</p>
+                            <p className={clsx(commonClasses.sectionSubheader, activeProject !== projectId ? classes.unactiveSubheader : '')}>
+                                {project.subheader}
+                            </p>
+                            <br /><br />
+                            <p className={commonClasses.sectionDescription}>{project.description}</p>
+                            <br /><br />
+                            <div className={commonClasses.sectionDetails}>
+                                {project.details.map((details, index) => (
+                                    <p key={'details' + index}>
+                                        * {details}
+                                    </p>
+                                ))}
+                            </div>
                         </div>
+                        <img
+                            className={commonClasses.sectionImage}
+                            id={projectId + 'Img'}
+                            style={{ background: project.background }}
+                            src={project.imageURL}
+                        />
                     </div>
-                    <img
-                        className={commonClasses.sectionImage}
-                        id={project.title.toLowerCase() + 'Img'}
-                        style={{ background: project.background }}
-                        src={project.imageURL}
-                    />
-                </div>
-            ))}
+                )
+            })}
         </div>
     );
 };

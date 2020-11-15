@@ -40,18 +40,16 @@ const useStyles = createUseStyles(theme => ({
 
 const Navbar = () => {
     const classes = useStyles();
-    const { activeRoute, setActiveRoute } = useActiveRoute();
+    const { activeRoute: _activeRoute } = useActiveRoute();
     const [top, setTop] = useState('142px');
 
-    const handleAboutClick = () => setActiveRoute('about');
-    const handleProjectsClick = () => setActiveRoute('projects');
-    const handleBlogClick = () => setActiveRoute('blog');
+    const activeRoute = _activeRoute.split('.')[0];
 
     useEffect(() => {
         if (activeRoute === 'about') setTop('142px');
         if (activeRoute === 'projects') setTop('89px');
         if (activeRoute === 'blog') setTop('33px');
-    }, [activeRoute]);
+    }, [_activeRoute]);
 
     return (
         <div className={classes.container}>
@@ -61,14 +59,12 @@ const Navbar = () => {
             >
                 <a
                     href="#about"
-                    onClick={handleAboutClick}
                     className={activeRoute === "about" ? classes.navLinkActive : classes.navLink}
                 >
                     About
                 </a>
                 <a
                     href="#projects"
-                    onClick={handleProjectsClick}
                     className={activeRoute === "projects" ? classes.navLinkActive : classes.navLink}
                 >
                     Projects
@@ -76,7 +72,6 @@ const Navbar = () => {
 
                 <a
                     href="#blog"
-                    onClick={handleBlogClick}
                     className={activeRoute === "blog" ? classes.navLinkActive : classes.navLink}
                 >
                     Blog

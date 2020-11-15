@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
-import { ActiveRouteProvider } from 'providers';
-import { getImageHeightAndTop, isBotttomOfScreen } from 'utility'
+import { getImageHeightAndTop, isBotttomOfScreen, isTopOfScreen } from 'utility';
+import { useActiveRoute } from 'hooks';
 import { Footer, Navbar, About, Projects, Blog } from 'components';
 
 
@@ -18,10 +18,22 @@ const useStyles = createUseStyles(theme => ({
 
 const App = () => {
     const classes = useStyles();
+    const { activeRoute, setActiveRoute } = useActiveRoute();
 
     const handleScroll = () => {
         const scrollSections = Array.from(document.getElementsByClassName('scrollSection'));
-        const blog = document.getElementById('blog');
+        const reversedSections = [...scrollSections];
+        for (let section of reversedSections.reverse()) {
+            const sectionId = (section.id !== 'about' && section.id !== 'blog') ? 'projects.' + section.id : section.id;
+            if (isTopOfScreen(section)) {
+                if (section.id !== 'about' && section.id !== 'blog') {
+                    setActiveRoute('projects.' + section.id);
+                } else {
+                    setActiveRoute(sectionId);
+                }
+                break;
+            }
+        };
         if (isBotttomOfScreen(blog)) {
             scrollSections.forEach(section => {
                 const sectionId = section.id;
@@ -48,19 +60,17 @@ const App = () => {
     }, []);
 
     return (
-        <ActiveRouteProvider>
-            <div className={classes.container}>
-                <div className={classes.body}>
-                    <Navbar />
-                    <div>
-                        <About />
-                        <Projects />
-                        <Blog />
-                    </div>
+        <div className={classes.container}>
+            <div className={classes.body}>
+                <Navbar />
+                <div>
+                    <About />
+                    <Projects />
+                    <Blog />
                 </div>
-                <Footer />
             </div>
-        </ActiveRouteProvider>
+            <Footer />
+        </div>
     );
 };
 

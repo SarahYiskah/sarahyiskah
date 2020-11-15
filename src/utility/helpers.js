@@ -12,4 +12,9 @@ export function isBotttomOfScreen(elm) {
     //TODO - Get all image heights.
     const imageHeight = 420.7;
     return bottom < (imageHeight + 300);
-}
+};
+
+export function isTopOfScreen(elm) {
+    const top = elm.getBoundingClientRect().top;
+    return top < 1;
+};

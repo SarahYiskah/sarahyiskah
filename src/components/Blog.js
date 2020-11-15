@@ -26,8 +26,24 @@ const useStyles = createUseStyles(theme => ({
         textDecoration: 'underline',
         lineHeight: '60px'
     },
+    unactiveTitle: {
+        color: theme.palette.text.tertiary,
+        transition: 'color 0.3s',
+        '& > span > svg > g > path': {
+            stroke: theme.palette.text.secondary + '33',
+            transition: 'color 0.3s',
+        }
+    },
     subheader: {
         textTransform: 'none',
+    },
+    unactiveSubheader: {
+        color: theme.palette.text.secondary + '33',
+        transition: 'color 0.3s',
+        '& > span > svg > g > path': {
+            stroke: theme.palette.text.secondary + '33',
+            transition: 'color 0.3s',
+        }
     },
     arrow: {
         marginLeft: '20px'
@@ -60,15 +76,14 @@ const blogs = [
 const Blog = () => {
     const classes = useStyles();
     const commonClasses = useCommonClasses();
-    const { setActiveRoute } = useActiveRoute();
 
-    const handleBlogMouseOver = () => setActiveRoute('blog');
+    const { activeRoute } = useActiveRoute();
+
 
     return (
         <div
             id="blog"
             className={clsx(classes.container, 'scrollSection')}
-            onMouseOver={handleBlogMouseOver}
         >
             <div className={classes.links}>
                 {blogs.map((blog, index) => (
@@ -80,7 +95,7 @@ const Blog = () => {
                         rel="noopener noreferrer"
                         href={blog.link}
                     >
-                        <p className={clsx(commonClasses.sectionTitle, classes.title)}>
+                        <p className={clsx(commonClasses.sectionTitle, classes.title, activeRoute !== 'blog' ? classes.unactiveTitle : '')}>
                             {blog.title}
                             {!blog.subheader
                                 ? <span className={classes.arrow}><RightArrow /></span>
@@ -89,7 +104,7 @@ const Blog = () => {
                         </p>
                         {!!blog.subheader
                             ? (
-                                <p className={clsx(commonClasses.sectionSubheader, classes.subheader)}>
+                                <p className={clsx(commonClasses.sectionSubheader, classes.subheader, activeRoute !== 'blog' ? classes.unactiveSubheader : '')}>
                                     {blog.subheader}
                                     <span className={classes.arrow}><RightArrow /></span>
                                 </p>
