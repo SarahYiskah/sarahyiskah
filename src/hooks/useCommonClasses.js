@@ -73,8 +73,17 @@ const useCommonClasses = createUseStyles(theme => ({
         position: 'fixed',
         right: '0',
         top: '140px',
-        objectFit: 'cover',
         marginLeft: 'auto',
+        display: 'flex',
+        objectFit: 'cover',
+        '& > img': {
+            position: 'absolute',
+            top: '0',
+            left: '0',
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+        },
         [theme.breakpoints.down.md]: {
             width: '385px',
             height: '420.7px'
@@ -83,6 +92,39 @@ const useCommonClasses = createUseStyles(theme => ({
             width: '867.81px',
             height: '530px'
         }
+    },
+    sectionActionContainer: {
+        display: 'flex',
+        alignItems: 'flex-end',
+        position: 'absolute',
+        cursor: 'pointer',
+        position: 'fixed',
+        top: `${(140 + 420.7) - 41}px`,
+        right: `${385 - 268}px`,
+        [theme.breakpoints.down.md]: {
+            top: `${(140 + 420.7) - 41}px`,
+            right: `${385 - 268}px`
+        },
+        [theme.breakpoints.up.lg]: {
+            top: `${(140 + 530) - 41}px`,
+            right: `${867.81 - 268}px`
+        },
+        zIndex: 2,
+        textDecoration: 'none'
+    },
+    sectionAction: {
+        margin: '0',
+        marginLeft: '20px',
+        fontFamily: 'PT Sans Caption',
+        fontSize: '20px',
+        fontStyle: 'normal',
+        fontWeight: '400',
+        lineHeight: '26px',
+        color: theme.palette.text.primary,
+        textDecoration: 'none'
+    },
+    unactive: {
+        opacity: 0.3
     }
 }));
 

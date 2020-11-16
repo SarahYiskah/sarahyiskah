@@ -1,36 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useCommonClasses, useActiveRoute } from 'hooks'
 import clsx from 'clsx';
+import { Modal } from 'common';
+import { PlayBox } from 'assets/icons';
 
 const useStyles = createUseStyles(theme => ({
     container: {
         display: 'flex',
         justifyContent: 'space-between',
-        position: 'relative'
+        // position: 'relative'
     },
     details: {
         paddingTop: '130px',
         paddingBottom: '127px'
-    },
-    unactive: {
-        '& > p': {
-            color: theme.palette.text.tertiary,
-            transition: 'color 0.3s',
-        },
-        '& > div > p': {
-            color: theme.palette.text.tertiary,
-            transition: 'color 0.3s',
-        }
-    },
-    unactiveSubheader: {
-        color: theme.palette.text.secondary + '33',
-        transition: 'color 0.3s',
     }
 }));
 
 const projects = [
     {
+        id: 'musico',
         title: 'MUSICO',
         subheader: 'HTML  |  CSS  |  Javascript',
         description: 'An app made to combine friends playlist and play songs of shared interest.',
@@ -42,9 +31,10 @@ const projects = [
             'Hosted on Firebase'
         ],
         background: '#D0D1D8',
-        videoURL: '',
+        videoURL: require('../assets/videos/Musico.mp4'),
         imageURL: require('../assets/images/musico.png')
     }, {
+        id: 'game_night',
         title: 'GAME NIGHT',
         subheader: 'HTML  |  CSS  |  Javascript',
         description: 'A fun interactive live Rummikub game with your friends online.',
@@ -55,9 +45,10 @@ const projects = [
             'Hosted on Heroku',
         ],
         background: '#CDD4CB',
-        videoURL: '',
+        videoURL: require('../assets/videos/GameNight.mp4'),
         imageURL: require('../assets/images/game-night.png')
     }, {
+        id: 'trippy',
         title: 'TRIPPY',
         subheader: 'HTML  |  CSS  |  Ruby  |  Javascript',
         description: 'A great way to plan trips with your friends.',
@@ -68,7 +59,7 @@ const projects = [
             'Hosted on Heroku'
         ],
         background: '#EDE6CF',
-        videoURL: '',
+        videoURL: require('../assets/videos/Trippy App.mp4'),
         imageURL: require('../assets/images/trippy.png')
     }
 ];
@@ -79,48 +70,69 @@ const Projects = () => {
 
     const { activeRoute } = useActiveRoute();
     const [activeProject, setActiveProject] = useState('');
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         const project = activeRoute.split('.')[1] || '';
         setActiveProject(project);
     }, [activeRoute]);
 
+    const getVideoURL = useCallback(() => (
+        projects.find(project => project.id === activeProject).videoURL.default
+    ), [showModal]);
+
+    const handleDisplayVideo = () => setShowModal(true);
 
     return (
         <div id="projects">
-            {projects.map((project, index) => {
-                const projectId = project.title.toLowerCase().replace(/ /g, "_");
-                return (
-                    <div
-                        id={projectId}
-                        key={projectId}
-                        className={clsx(classes.container, 'scrollSection')}
-                    >
-                        <div className={clsx(classes.details, activeProject !== projectId ? classes.unactive : '')}>
-                            <p className={commonClasses.sectionTitle}>{project.title}</p>
-                            <p className={clsx(commonClasses.sectionSubheader, activeProject !== projectId ? classes.unactiveSubheader : '')}>
-                                {project.subheader}
-                            </p>
-                            <br /><br />
-                            <p className={commonClasses.sectionDescription}>{project.description}</p>
-                            <br /><br />
-                            <div className={commonClasses.sectionDetails}>
-                                {project.details.map((details, index) => (
-                                    <p key={'details' + index}>
-                                        * {details}
-                                    </p>
-                                ))}
-                            </div>
+            <Modal setShowModal={setShowModal} showModal={showModal}>
+                {
+                    showModal &&
+                    <video width="320" height="240" autoPlay controls>
+                        <source src={getVideoURL()} type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                }
+            </Modal>
+            {projects.map((project, index) => (
+                <div
+                    id={project.id}
+                    key={project.id}
+                    className={clsx(classes.container, 'scrollSection')}
+                >
+                    <div className={clsx(classes.details, activeProject !== project.id ? commonClasses.unactive : '')}>
+                        <p className={commonClasses.sectionTitle}>{project.title}</p>
+                        <p className={commonClasses.sectionSubheader}>
+                            {project.subheader}
+                        </p>
+                        <br /><br />
+                        <p className={commonClasses.sectionDescription}>{project.description}</p>
+                        <br /><br />
+                        <div className={commonClasses.sectionDetails}>
+                            {project.details.map((details, index) => (
+                                <p key={'details' + index}>
+                                    * {details}
+                                </p>
+                            ))}
                         </div>
+                    </div>
+                    <div className={commonClasses.sectionImage} id={project.id + 'Img'}>
                         <img
-                            className={commonClasses.sectionImage}
-                            id={projectId + 'Img'}
                             style={{ background: project.background }}
                             src={project.imageURL}
                         />
                     </div>
-                )
-            })}
+                    {
+                        activeProject === project.id
+                            ? (
+                                <div className={commonClasses.sectionActionContainer} onClick={handleDisplayVideo}>
+                                    <PlayBox />
+                                    <p className={commonClasses.sectionAction}>Watch Demo</p>
+                                </div>
+                            ) : null
+                    }
+                </div>
+            ))}
         </div>
     );
 };

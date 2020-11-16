@@ -1,7 +1,8 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
-import { useCommonClasses } from 'hooks'
+import { useCommonClasses, useActiveRoute } from 'hooks'
 import clsx from 'clsx';
+import { DownloadBox } from 'assets/icons';
 
 const useStyles = createUseStyles(theme => ({
     container: {
@@ -19,6 +20,12 @@ const About = () => {
     const classes = useStyles();
     const commonClasses = useCommonClasses();
 
+    const { activeRoute } = useActiveRoute();
+
+    const imageURL = window.innerWidth > 1800
+        ? require('../assets/images/profile-wide.png')
+        : require('../assets/images/profile.png');
+
     return (
         <div
             id="about"
@@ -35,7 +42,22 @@ const About = () => {
                 <br />
                 Sarah Yiskah Eichenstein
             </p>
-            <img id="aboutImg" className={commonClasses.sectionImage} src={require('../assets/images/profile.png')} />
+            <div id="aboutImg" className={commonClasses.sectionImage}>
+                <img src={imageURL} />
+            </div>
+            {
+                activeRoute === 'about'
+                    ? (
+                        <a
+                            href={require("../assets/documents/resume.pdf")}
+                            className={commonClasses.sectionActionContainer}
+                            download="Sarah Eichenstein Resume"
+                        >
+                            <DownloadBox />
+                            <p className={commonClasses.sectionAction}>My Resume</p>
+                        </a>
+                    ) : null
+            }
         </div>
     );
 };

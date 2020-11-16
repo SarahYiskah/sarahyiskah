@@ -34,6 +34,7 @@ const App = () => {
                 break;
             }
         };
+        const blog = document.getElementById('blog');
         if (isBotttomOfScreen(blog)) {
             scrollSections.forEach(section => {
                 const sectionId = section.id;

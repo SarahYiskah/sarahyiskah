@@ -41,7 +41,11 @@ module.exports = {
                 use: ['style-loader', 'css-loader']
             },
             {
-                test: /\.(png|jpe?g|gif)$/i,
+                test: /\.mp4$/,
+                use: 'file-loader?name=videos/[name].[ext]',
+            },
+            {
+                test: /\.(pdf|png|jpe?g|gif)$/i,
                 use: [
                     {
                         loader: 'file-loader',
