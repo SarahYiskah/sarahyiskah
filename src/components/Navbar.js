@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useActiveRoute } from 'hooks';
+import { DownArrow } from 'assets/icons';
+import clsx from 'clsx';
 
 const useStyles = createUseStyles(theme => ({
     container: {
@@ -12,7 +14,9 @@ const useStyles = createUseStyles(theme => ({
         position: 'sticky',
         paddingRight: '50px',
         transition: 'top 0.5s',
-        paddingBottom: '113px'
+        paddingBottom: '185px',
+        width: '80px',
+        marginLeft: 'auto',
     },
     navLink: {
         fontFamily: 'PT Sans Caption',
@@ -35,15 +39,31 @@ const useStyles = createUseStyles(theme => ({
         textTransform: 'lowercase',
         marginBottom: '27px',
         color: theme.palette.text.primary
+    },
+    downArrow: {
+        width: '80px',
+        marginLeft: 'auto',
+        display: 'flex',
+        justifyContent: 'center',
+        position: 'sticky',
+        paddingRight: '50px',
+        top: '650px',
+        cursor: 'pointer',
+        paddingBottom: '140px'
+    },
+    unactive: {
+        opacity: 0.3,
+        pointerEvents: 'none'
     }
 }));
 
 const Navbar = () => {
     const classes = useStyles();
-    const { activeRoute: _activeRoute } = useActiveRoute();
+    const { activeRoute: _activeRoute, getNextRoute } = useActiveRoute();
     const [top, setTop] = useState('142px');
 
     const activeRoute = _activeRoute.split('.')[0];
+    const nextRoute = getNextRoute() ? getNextRoute() : '';
 
     useEffect(() => {
         if (activeRoute === 'about') setTop('142px');
@@ -77,6 +97,12 @@ const Navbar = () => {
                     Blog
                 </a>
             </div>
+            <a
+                className={clsx(classes.downArrow, !nextRoute && classes.unactive)}
+                href={'#' + nextRoute}
+            >
+                <DownArrow />
+            </a>
         </div>
     );
 };

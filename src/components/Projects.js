@@ -19,7 +19,7 @@ const useStyles = createUseStyles(theme => ({
 
 const projects = [
     {
-        id: 'musico',
+        id: 'projects.musico',
         title: 'MUSICO',
         subheader: 'HTML  |  CSS  |  Javascript',
         description: 'An app made to combine friends playlist and play songs of shared interest.',
@@ -34,7 +34,7 @@ const projects = [
         videoURL: require('../assets/videos/Musico.mp4'),
         imageURL: require('../assets/images/musico.png')
     }, {
-        id: 'game_night',
+        id: 'projects.game_night',
         title: 'GAME NIGHT',
         subheader: 'HTML  |  CSS  |  Javascript',
         description: 'A fun interactive live Rummikub game with your friends online.',
@@ -48,7 +48,7 @@ const projects = [
         videoURL: require('../assets/videos/GameNight.mp4'),
         imageURL: require('../assets/images/game-night.png')
     }, {
-        id: 'trippy',
+        id: 'projects.trippy',
         title: 'TRIPPY',
         subheader: 'HTML  |  CSS  |  Ruby  |  Javascript',
         description: 'A great way to plan trips with your friends.',
@@ -69,17 +69,14 @@ const Projects = () => {
     const commonClasses = useCommonClasses();
 
     const { activeRoute } = useActiveRoute();
-    const [activeProject, setActiveProject] = useState('');
     const [showModal, setShowModal] = useState(false);
 
-    useEffect(() => {
-        const project = activeRoute.split('.')[1] || '';
-        setActiveProject(project);
-    }, [activeRoute]);
-
-    const getVideoURL = useCallback(() => (
-        projects.find(project => project.id === activeProject).videoURL.default
-    ), [showModal]);
+    const getVideoURL = useCallback(() => {
+        if (!activeRoute.includes('projects')) {
+            return projects[0].videoURL.default;
+        }
+        return projects.find(project => project.id === activeRoute).videoURL.default;
+    }, [showModal]);
 
     const handleDisplayVideo = () => setShowModal(true);
 
@@ -100,7 +97,7 @@ const Projects = () => {
                     key={project.id}
                     className={clsx(classes.container, 'scrollSection')}
                 >
-                    <div className={clsx(classes.details, activeProject !== project.id ? commonClasses.unactive : '')}>
+                    <div className={clsx(classes.details, activeRoute !== project.id ? commonClasses.unactive : '')}>
                         <p className={commonClasses.sectionTitle}>{project.title}</p>
                         <p className={commonClasses.sectionSubheader}>
                             {project.subheader}
@@ -122,15 +119,10 @@ const Projects = () => {
                             src={project.imageURL}
                         />
                     </div>
-                    {
-                        activeProject === project.id
-                            ? (
-                                <div className={commonClasses.sectionActionContainer} onClick={handleDisplayVideo}>
-                                    <PlayBox />
-                                    <p className={commonClasses.sectionAction}>Watch Demo</p>
-                                </div>
-                            ) : null
-                    }
+                    <div id={project.id + 'Action'} className={commonClasses.sectionActionContainer} onClick={handleDisplayVideo}>
+                        <PlayBox />
+                        <p className={commonClasses.sectionAction}>Watch Demo</p>
+                    </div>
                 </div>
             ))}
         </div>

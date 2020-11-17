@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
-import { getImageHeightAndTop, isBotttomOfScreen, isTopOfScreen } from 'utility';
+import { getContainerDimensions, isBotttomOfScreen, isTopOfScreen } from 'utility';
 import { useActiveRoute } from 'hooks';
 import { Footer, Navbar, About, Projects, Blog } from 'components';
 
@@ -24,13 +24,8 @@ const App = () => {
         const scrollSections = Array.from(document.getElementsByClassName('scrollSection'));
         const reversedSections = [...scrollSections];
         for (let section of reversedSections.reverse()) {
-            const sectionId = (section.id !== 'about' && section.id !== 'blog') ? 'projects.' + section.id : section.id;
             if (isTopOfScreen(section)) {
-                if (section.id !== 'about' && section.id !== 'blog') {
-                    setActiveRoute('projects.' + section.id);
-                } else {
-                    setActiveRoute(sectionId);
-                }
+                setActiveRoute(section.id);
                 break;
             }
         };
@@ -44,11 +39,15 @@ const App = () => {
         } else {
             scrollSections.forEach(section => {
                 const sectionId = section.id;
-                const imageDimensions = getImageHeightAndTop(section);
+                const containerDimensions = getContainerDimensions(section);
                 const imageToUpdate = document.getElementById(sectionId + 'Img');
                 imageToUpdate.style.position = 'fixed';
-                imageToUpdate.style.height = imageDimensions.height;
-                imageToUpdate.style.top = imageDimensions.location;
+                imageToUpdate.style.height = containerDimensions.imgHeight;
+                imageToUpdate.style.top = containerDimensions.imgTop;
+                const actionToUpdate = document.getElementById(sectionId + 'Action');
+                if (actionToUpdate) {
+                    actionToUpdate.style.opacity = containerDimensions.actionOpacity;
+                }
             });
         }
     };

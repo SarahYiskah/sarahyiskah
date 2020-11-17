@@ -100,7 +100,7 @@ const useCommonClasses = createUseStyles(theme => ({
         cursor: 'pointer',
         position: 'fixed',
         top: `${(140 + 420.7) - 41}px`,
-        right: `${385 - 268}px`,
+        right: `${485 - 268}px`,
         [theme.breakpoints.down.md]: {
             top: `${(140 + 420.7) - 41}px`,
             right: `${385 - 268}px`
@@ -110,7 +110,8 @@ const useCommonClasses = createUseStyles(theme => ({
             right: `${867.81 - 268}px`
         },
         zIndex: 2,
-        textDecoration: 'none'
+        textDecoration: 'none',
+        width: '230px'
     },
     sectionAction: {
         margin: '0',

@@ -45,19 +45,15 @@ const About = () => {
             <div id="aboutImg" className={commonClasses.sectionImage}>
                 <img src={imageURL} />
             </div>
-            {
-                activeRoute === 'about'
-                    ? (
-                        <a
-                            href={require("../assets/documents/resume.pdf")}
-                            className={commonClasses.sectionActionContainer}
-                            download="Sarah Eichenstein Resume"
-                        >
-                            <DownloadBox />
-                            <p className={commonClasses.sectionAction}>My Resume</p>
-                        </a>
-                    ) : null
-            }
+            <a
+                href={require("../assets/documents/resume.pdf")}
+                className={commonClasses.sectionActionContainer}
+                download="Sarah Eichenstein Resume"
+                id="aboutAction"
+            >
+                <DownloadBox />
+                <p className={commonClasses.sectionAction}>My Resume</p>
+            </a>
         </div>
     );
 };
