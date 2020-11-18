@@ -79,7 +79,7 @@ const Blog = () => {
                         rel="noopener noreferrer"
                         href={blog.link}
                     >
-                        <p className={commonClasses.sectionTitle}>
+                        <p className={clsx(commonClasses.sectionTitle, classes.title)}>
                             {blog.title}
                             {!blog.subheader
                                 ? <span className={classes.arrow}><RightArrow /></span>
