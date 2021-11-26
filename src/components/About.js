@@ -35,7 +35,7 @@ const About = () => {
                 Hey there!
                 <br />
                 <br />
-                I am a full stack web developer with a passion for creating positive user experiences. I have practice in HTML5, CSS, Ruby, Ruby on Rails, Python, JavaScript (ES6), AngularJS, React & Redux. I enjoy problem solving & have an aptitude for learning new languages quickly & efficiently.
+                I am a full stack web developer with a passion for creating positive user experiences. I have practice in HTML5, CSS, JavaScript, AngularJS, React, Ruby, Ruby on Rails and Python. I enjoy problem solving & have an aptitude for learning new languages quickly & efficiently.
                 <br />
                 <br />
                 &lt;3
