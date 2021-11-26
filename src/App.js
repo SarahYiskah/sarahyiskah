@@ -47,6 +47,7 @@ const App = () => {
                 const actionToUpdate = document.getElementById(sectionId + 'Action');
                 if (actionToUpdate) {
                     actionToUpdate.style.opacity = containerDimensions.actionOpacity;
+                    actionToUpdate.style.zIndex = containerDimensions.actionOpacity;
                 }
             });
         }
