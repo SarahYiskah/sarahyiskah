@@ -57,7 +57,7 @@ const App = () => {
         window.addEventListener("scroll", handleScroll);
         handleScroll();
 
-        return () => window.removeEventListener("scroll", onScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
     return (
