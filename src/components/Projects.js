@@ -48,6 +48,19 @@ const projects = [
         videoURL: require('../assets/videos/SlateApp.mp4'),
         imageURL: require('../assets/images/slate-app.png')
     }, {
+        id: 'projects.point',
+        title: 'Point Card',
+        subheader: 'REACT |  VITE | SEGMENT | REACT NATIVE',
+        description: "A debit card that gives you points for spending.",
+        details: [
+            'Used React and Vite for web application',
+            'Used React Native to create a mobile app',
+            'Used Segment to create and track user events',
+        ],
+        background: '#D0D1D8',
+        videoURL: require('../assets/videos/PointCard.mp4'),
+        imageURL: require('../assets/images/point-card.png')
+    }, {
         id: 'projects.musico',
         title: 'MUSICO',
         subheader: 'HTML  |  CSS  |  Javascript',

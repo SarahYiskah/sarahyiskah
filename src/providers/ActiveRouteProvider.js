@@ -9,6 +9,7 @@ export const routes = [
     'about',
     'projects.bite',
     'projects.slate',
+    'projects.point',
     'projects.musico',
     'projects.game_night',
     'projects.trippy',
