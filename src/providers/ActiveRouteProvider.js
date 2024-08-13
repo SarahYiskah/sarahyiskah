@@ -7,6 +7,8 @@ const INIT_STATE = {
 
 export const routes = [
     'about',
+    'projects.bite',
+    'projects.slate',
     'projects.musico',
     'projects.game_night',
     'projects.trippy',

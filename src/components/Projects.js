@@ -19,6 +19,35 @@ const useStyles = createUseStyles(theme => ({
 
 const projects = [
     {
+        id: 'projects.bite',
+        title: 'BITE',
+        subheader: 'REACT NATIVE  |  FIREBASE | ZUSTAND',
+        description: "An app for turning your recipes into a personalized cookbook! Create, label, and easily find your favorites or saved recipes. Sort and manage your recipes to suit your cooking style.",
+        details: [
+            'Cross-Platform Compatibility: Built with React Native to ensure a smooth experience on both iOS and Android',
+            'Utilized Firebase for real-time data synchronization, secure user authentication, and cloud storage',
+            'Used Zustand for easy and flexible state management',
+            'Combined custom CSS with react-native-ui-lib for a beautiful, user-friendly interface',
+            'Implemented react-native-reanimated for smooth, interactive animations and transitions'
+        ],
+        background: '#D0D1D8',
+        videoURL: require('../assets/videos/BiteApp.mp4'),
+        imageURL: require('../assets/images/bite-app.png')
+    }, {
+        id: 'projects.slate',
+        title: 'SLATE',
+        subheader: 'REACT NATIVE  |  FIREBASE',
+        description: "An app for organizing your tasks efficiently. Easily view and manage tasks due today, this week, or this month. Highlight your most important tasks and switch to a calendar view to stay on top of your schedule.",
+        details: [
+            'Built with React Native: The app runs seamlessly on both iOS and Android',
+            'Utilized Firebase for real-time data synchronization, secure user authentication, and cloud storage',
+            'Used react-native-reanimated for creating smooth animations that enhance the user experience',
+            'Focused on providing a clean, user-friendly interface'
+        ],
+        background: '#D0D1D8',
+        videoURL: require('../assets/videos/SlateApp.mp4'),
+        imageURL: require('../assets/images/slate-app.png')
+    }, {
         id: 'projects.musico',
         title: 'MUSICO',
         subheader: 'HTML  |  CSS  |  Javascript',
